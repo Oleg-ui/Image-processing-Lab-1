@@ -227,7 +227,7 @@ int main()
 	unsigned int end_time01 = clock();
 	unsigned int search_time01 = end_time01 - start_time01;
 	imshow("Gray image OPENCV", gray_src4);
-	cout << "Working time of OPENCV filter: " << search_time0 << endl;
+	cout << "Working time of OPENCV filter: " << search_time01 << endl << endl;
 	//
 
 	//Task 3
@@ -235,14 +235,23 @@ int main()
 	Mat RGB_1 = imread("1.jpg", CV_LOAD_IMAGE_COLOR);
 	Mat HSV = RGB_1.clone();
 
+	unsigned int start_time02 = clock();
 	RGB2HSV(RGB_1, HSV);
+	unsigned int end_time02 = clock();
+	unsigned int search_time02 = end_time02 - start_time02;
 	imshow("RGB->HSV image", HSV);
+	cout << "Working time of our conversion: " << search_time02 << endl;
 
 	Mat src5 = imread("1.jpg", CV_LOAD_IMAGE_COLOR);
 	Mat result;
+
+	unsigned int start_time03 = clock();
 	cvtColor(src5, result, CV_BGR2HSV);
+	unsigned int end_time03 = clock();
+	unsigned int search_time03 = end_time03 - start_time03;
 	imshow("RGB->HSV OPENCV", result);
-	
+	cout << "Working time of OPENCV conversion: " << search_time03 << endl << endl;
+
 	double psnr_val3 = PSNR(HSV, result);
 	cout << "PSNR HSV: " << psnr_val3 << endl;
 
